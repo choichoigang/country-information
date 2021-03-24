@@ -25,6 +25,7 @@ const CountryTableWrapper = styled.tr`
   align-items: center;
   width: 100%;
   padding: 12px;
+  border-bottom: 1px solid #e1e4e8;
 
   td {
     display: flex;
