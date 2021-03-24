@@ -1,0 +1,27 @@
+{
+  "name": "country-information",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/choichoigang/country-information.git",
+  "author": "choijangho <jhchoi1115@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.27.2",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
