@@ -9,6 +9,8 @@ module.exports = {
     filename: "./build/bundle.[hash].js",
   },
 
+  target: ["web", "es5"],
+
   module: {
     rules: [
       {
@@ -40,7 +42,7 @@ module.exports = {
 
   resolve: {
     // modules: ["node_modules"],
-    extensions: [".js", ".json", ".jsx", ".css"],
+    extensions: [".js", ".jsx"],
   },
 
   devServer: {
