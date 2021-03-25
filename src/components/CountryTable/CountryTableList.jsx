@@ -1,8 +1,14 @@
 import React from "react";
-import CountryTable from "./CountryTable";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { deleteCountryTableAction } from "../../store/module/countryTable";
+import CountryTable from "./CountryTable";
 
 const CountryTableList = ({ countryList }) => {
+  const dispatch = useDispatch();
+
+  const removeCountryTable = (name) => dispatch(deleteCountryTableAction(name));
+
   return (
     <CountryTableListWrapper>
       {countryList.map(
@@ -15,6 +21,7 @@ const CountryTableList = ({ countryList }) => {
               callingCode={callingCodes[0]}
               alpha2Code={alpha2Code}
               capital={capital}
+              handleRemoveTalble={removeCountryTable}
             />
           );
         }

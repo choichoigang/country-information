@@ -2,7 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../moduleComponent/Button";
 
-const CountryTable = ({ name, alpha2Code, callingCode, capital, region }) => {
+const CountryTable = ({
+  name,
+  alpha2Code,
+  callingCode,
+  capital,
+  region,
+  handleRemoveTalble,
+}) => {
   return (
     <CountryTableWrapper>
       <td>{name}</td>
@@ -12,7 +19,12 @@ const CountryTable = ({ name, alpha2Code, callingCode, capital, region }) => {
       <td>{region || "-"}</td>
 
       <td>
-        <Button width={"100%"} onClick={() => {}}>
+        <Button
+          width={"100%"}
+          onClick={() => {
+            handleRemoveTalble(name);
+          }}
+        >
           Delete
         </Button>
       </td>
