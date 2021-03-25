@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { Field, reduxForm, reset } from "redux-form";
 import { addCountryTableAction } from "../../store/module/countryTable";
+
 import styled from "styled-components";
 import Button from "../moduleComponent/Button";
-import { INIT_TABLE_FORM } from "../../constants/countryTable";
+
+import { checkCallingCodes } from "../../util/countryTable";
+import { INIT_TABLE_FORM, FORM_ERROR } from "../../constants/countryTable";
 
 const CountryTableForm = () => {
   const dispatch = useDispatch();
@@ -27,13 +31,16 @@ const CountryTableForm = () => {
   const onSubmitTableForm = (e) => {
     e.preventDefault();
     const isRequiredValue = values.name;
-    if (!isRequiredValue) return window.confirm("Name is required input table");
+    const callingCodes = checkCallingCodes(values.callingCodes);
+
+    if (!isRequiredValue) return window.confirm(FORM_ERROR.name);
+    if (!callingCodes) return window.confirm(FORM_ERROR.callingCodes);
 
     const isOverlap = data.some(({ name }) => name === isRequiredValue);
 
     isOverlap
-      ? window.confirm("Name cannot be shipped")
-      : dispatchAddTable(values);
+      ? window.confirm(FORM_ERROR.shipped)
+      : dispatchAddTable({ ...values, callingCodes });
   };
 
   return (
@@ -73,6 +80,9 @@ const CountryTableForm = () => {
           </div>
           <div>
             <label htmlFor="capital">capital</label>
+            <p className="comment">
+              The callingCode can be used multiple by separating it with ",".
+            </p>
             <Field
               name="capital"
               type="text"
@@ -80,6 +90,7 @@ const CountryTableForm = () => {
               className="form_input"
             />
           </div>
+
           <div>
             <label htmlFor="region">region</label>
             <Field
@@ -118,7 +129,7 @@ const From = styled.form`
   top: 36px;
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 360px;
 
   padding: 12px;
   background-color: #ffffff;
@@ -138,7 +149,15 @@ const From = styled.form`
     display: flex;
   }
 
+  .comment {
+    padding: 4px 0px;
+    font-size: 1.2rem;
+    word-break: break-word;
+    color: #5f5e57;
+  }
+
   label {
+    font-size: 1.4rem;
     font-weight: bold;
   }
 `;

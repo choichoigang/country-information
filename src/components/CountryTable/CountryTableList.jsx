@@ -18,7 +18,7 @@ const CountryTableList = ({ countryList }) => {
               key={name}
               name={name}
               region={region}
-              callingCode={callingCodes[0]}
+              callingCodes={callingCodes.join()}
               alpha2Code={alpha2Code}
               capital={capital}
               handleRemoveTalble={removeCountryTable}

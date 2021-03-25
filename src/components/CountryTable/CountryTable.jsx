@@ -5,7 +5,7 @@ import Button from "../moduleComponent/Button";
 const CountryTable = ({
   name,
   alpha2Code,
-  callingCode,
+  callingCodes,
   capital,
   region,
   handleRemoveTalble,
@@ -13,8 +13,8 @@ const CountryTable = ({
   return (
     <CountryTableWrapper>
       <td>{name}</td>
-      <td>{alpha2Code}</td>
-      <td>{Number(callingCode) ? Number(callingCode) : "-"}</td>
+      <td>{alpha2Code || "-"}</td>
+      <td>{callingCodes || "-"}</td>
       <td>{capital || "-"}</td>
       <td>{region || "-"}</td>
 
