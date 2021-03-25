@@ -7,9 +7,9 @@ const CountryTable = ({ name, alpha2Code, callingCode, capital, region }) => {
     <CountryTableWrapper>
       <td>{name}</td>
       <td>{alpha2Code}</td>
-      <td>{callingCode}</td>
-      <td>{capital}</td>
-      <td>{region}</td>
+      <td>{Number(callingCode) ? Number(callingCode) : "-"}</td>
+      <td>{capital || "-"}</td>
+      <td>{region || "-"}</td>
 
       <td>
         <Button width={"100%"} onClick={() => {}}>
