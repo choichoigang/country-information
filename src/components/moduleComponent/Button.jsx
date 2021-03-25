@@ -19,6 +19,7 @@ const Button = ({
       fillColor={fillColor}
       hoverColor={hoverColor}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </ButtonWrapper>
@@ -33,6 +34,7 @@ const ButtonWrapper = styled.button`
   border-radius: 16px;
   line-height: 1;
   font-weight: 600;
+  margin: 0px 4px;
 
   transition: 0.3s;
 
