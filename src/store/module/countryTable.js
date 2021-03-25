@@ -44,12 +44,22 @@ const countryTableSlice = createSlice({
       state.error = payload;
       state.isLoading = false;
     },
+
+    // store actions
     reOrderCountryTableAction: (state, { payload }) => {
+      if (state.filteredList.length) console.log("filter");
+
       state.data = state.order[payload]
         ? sortDescend(state.data, payload)
         : sortAscend(state.data, payload);
 
       state.order = { ...INIT_ORDER, [payload]: !state.order[payload] };
+    },
+    addCountryTableAction: (state, { payload }) => {
+      state.data = [payload, ...state.data];
+    },
+    deleteCountryTableAction: (state, { payload }) => {
+      state.data = state.data.filter((table) => table.name !== payload);
     },
   },
 });
@@ -60,6 +70,8 @@ export const {
   getCountryTableFailureAction,
 
   reOrderCountryTableAction,
+  addCountryTableAction,
+  deleteCountryTableAction,
 } = countryTableSlice.actions;
 
 export default countryTableSlice.reducer;
