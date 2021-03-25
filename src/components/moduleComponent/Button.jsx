@@ -30,7 +30,7 @@ const ButtonWrapper = styled.button`
   overflow: visible;
   outline: none;
 
-  border-radius: 1rem;
+  border-radius: 16px;
   line-height: 1;
   font-weight: 600;
 
