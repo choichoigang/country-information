@@ -6,11 +6,9 @@ const Frame = ({ children }) => {
 };
 
 const FrameWrapper = styled.section`
-  margin: auto;
+  margin: 52px auto;
   max-width: 1024px;
   min-width: 768px;
-
-  margin: 52px 0px;
 `;
 
 export default Frame;
