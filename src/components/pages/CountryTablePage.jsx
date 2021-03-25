@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCountryTableLoadAction } from "../../store/module/countryTable";
 import styled from "styled-components";
+
 import CountryTableList from "../CountryTable/CountryTableList";
+import CountryTableHeader from "../CountryTable/CountryTableHeader";
 import Frame from "../frame/Frame";
 
 const CountryTablePage = () => {
@@ -19,6 +21,7 @@ const CountryTablePage = () => {
       {isLoading && <div>Loading</div>}
       {data && (
         <TableWrapper>
+          <CountryTableHeader />
           <CountryTableList countryList={data} />
         </TableWrapper>
       )}
