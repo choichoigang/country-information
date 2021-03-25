@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { sortAscend, sortDescend } from "../../util/sort";
+import { convertCallingCodes } from "../../util/countryTable";
 
 const INIT_ORDER = {
   name: false,
@@ -56,7 +57,10 @@ const countryTableSlice = createSlice({
       state.order = { ...INIT_ORDER, [payload]: !state.order[payload] };
     },
     addCountryTableAction: (state, { payload }) => {
-      state.data = [payload, ...state.data];
+      state.data = [
+        { ...payload, callingCodes: convertCallingCodes(payload.callingCodes) },
+        ...state.data,
+      ];
     },
     deleteCountryTableAction: (state, { payload }) => {
       state.data = state.data.filter((table) => table.name !== payload);
