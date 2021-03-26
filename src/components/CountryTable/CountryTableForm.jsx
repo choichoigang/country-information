@@ -78,8 +78,8 @@ const CountryTableForm = ({ handleSubmit }) => {
           />
 
           <div className="button_area">
-            <Button fillColor={color.red}>Add</Button>
-            <Button fillColor={color.green} onClick={setModalToggle}>
+            <Button fillColor={color.green}>Add</Button>
+            <Button fillColor={color.red} onClick={setModalToggle}>
               Close
             </Button>
           </div>
