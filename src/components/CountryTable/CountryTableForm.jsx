@@ -9,7 +9,7 @@ import Button from "../moduleComponent/Button";
 import RenderField from "../moduleComponent/RenderField";
 
 import { INIT_TABLE_FORM } from "../../constants/countryTable";
-import { nameRequired, onlyNumber } from "../../validation/countryTable";
+import { required, onlyNumber } from "../../validation/countryTable";
 
 const CountryTableForm = ({ handleSubmit }) => {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const CountryTableForm = ({ handleSubmit }) => {
             label="Name"
             className="form_input"
             component={RenderField}
-            validate={nameRequired}
+            validate={required}
           />
 
           <Field
