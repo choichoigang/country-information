@@ -1,18 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sortAscend, sortDescend } from "../../util/sort";
+import shortid from "shortid";
 
-const INIT_ORDER = {
-  name: false,
-  alpha2Code: false,
-  callingCodes: false,
-  capital: false,
-  region: false,
-};
+import { INIT_ORDER } from "../../constants/countryTable";
+import { sortAscend, sortDescend } from "../../util/sort";
+import { convertCallingCodes, findMatchKeyword } from "../../util/countryTable";
 
 const initialState = {
+  searchKeyword: "",
   order: {
-    // true : 오름차순
-    // false : 내림차순
     name: false,
     alpha2Code: false,
     callingCodes: false,
@@ -31,7 +26,6 @@ const countryTableSlice = createSlice({
   name: "countryTable",
   initialState,
   reducers: {
-    // fetch actions
     getCountryTableLoadAction: (state) => {
       state.isLoading = true;
       state.error = null;
@@ -44,12 +38,48 @@ const countryTableSlice = createSlice({
       state.error = payload;
       state.isLoading = false;
     },
+
+    searchCountryTableAction: (state, { payload }) => {
+      state.filteredList = state.data.filter((table) => {
+        delete table.tableId;
+
+        return findMatchKeyword(table, payload.toLowerCase());
+      });
+
+      state.searchKeyword = payload;
+    },
+
     reOrderCountryTableAction: (state, { payload }) => {
+      state.order = { ...INIT_ORDER, [payload]: !state.order[payload] };
+
+      if (state.filteredList.length)
+        state.filteredList = state.order[payload]
+          ? sortDescend(state.filteredList, payload)
+          : sortAscend(state.filteredList, payload);
+
       state.data = state.order[payload]
         ? sortDescend(state.data, payload)
         : sortAscend(state.data, payload);
+    },
 
-      state.order = { ...INIT_ORDER, [payload]: !state.order[payload] };
+    addCountryTableAction: (state, { payload }) => {
+      const newTable = {
+        ...payload,
+        tableId: shortid.generate(),
+        callingCodes: convertCallingCodes(payload.callingCodes),
+      };
+
+      if (state.filteredList.length)
+        state.filteredList = [newTable, ...state.filteredList];
+
+      state.data = [newTable, ...state.data];
+    },
+
+    deleteCountryTableAction: (state, { payload }) => {
+      if (state.filteredList.length)
+        state.data.filter((table) => table.tableId !== payload);
+
+      state.data = state.data.filter((table) => table.tableId !== payload);
     },
   },
 });
@@ -60,6 +90,9 @@ export const {
   getCountryTableFailureAction,
 
   reOrderCountryTableAction,
+  addCountryTableAction,
+  deleteCountryTableAction,
+  searchCountryTableAction,
 } = countryTableSlice.actions;
 
 export default countryTableSlice.reducer;

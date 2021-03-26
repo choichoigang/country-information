@@ -5,11 +5,17 @@ import styled from "styled-components";
 
 import CountryTableList from "../CountryTable/CountryTableList";
 import CountryTableHeader from "../CountryTable/CountryTableHeader";
+import CountryTableForm from "../CountryTable/CountryTableForm";
+import CountrySearch from "../CountryTable/CountrySearch";
 import Frame from "../frame/Frame";
 
 const CountryTablePage = () => {
-  const { isLoading, data, error } = useSelector((state) => state.countryTable);
   const dispatch = useDispatch();
+  const { isLoading, data, error, filteredList, searchKeyword } = useSelector(
+    (state) => state.countryTable
+  );
+
+  const filterDisabled = filteredList.length === 0 && searchKeyword === "";
 
   useEffect(() => {
     dispatch(getCountryTableLoadAction());
@@ -20,10 +26,16 @@ const CountryTablePage = () => {
       {error && <div>Loading</div>}
       {isLoading && <div>Loading</div>}
       {data && (
-        <TableWrapper>
-          <CountryTableHeader />
-          <CountryTableList countryList={data} />
-        </TableWrapper>
+        <>
+          <CountryTableForm />
+          <TableWrapper>
+            <CountrySearch />
+            <CountryTableHeader />
+            <CountryTableList
+              countryList={filterDisabled ? data : filteredList}
+            />
+          </TableWrapper>
+        </>
       )}
     </Frame>
   );

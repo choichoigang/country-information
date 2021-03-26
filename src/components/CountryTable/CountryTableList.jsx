@@ -1,20 +1,29 @@
 import React from "react";
-import CountryTable from "./CountryTable";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { deleteCountryTableAction } from "../../store/module/countryTable";
+import CountryTable from "./CountryTable";
 
 const CountryTableList = ({ countryList }) => {
+  const dispatch = useDispatch();
+
+  const removeCountryTable = (tableId) =>
+    dispatch(deleteCountryTableAction(tableId));
+
   return (
     <CountryTableListWrapper>
       {countryList.map(
-        ({ name, alpha2Code, callingCodes, capital, region }) => {
+        ({ name, alpha2Code, callingCodes, capital, region, tableId }) => {
           return (
             <CountryTable
-              key={name}
+              key={tableId}
+              tableId={tableId}
               name={name}
               region={region}
-              callingCode={callingCodes[0]}
+              callingCodes={callingCodes.join(",")}
               alpha2Code={alpha2Code}
               capital={capital}
+              handleRemoveTalble={removeCountryTable}
             />
           );
         }
