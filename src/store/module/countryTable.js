@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { sortAscend, sortDescend } from "../../util/sort";
 import { convertCallingCodes, findMatchKeyword } from "../../util/countryTable";
+import shortid from "shortid";
 
 const INIT_ORDER = {
   name: false,
@@ -66,9 +67,11 @@ const countryTableSlice = createSlice({
         ? sortDescend(state.data, payload)
         : sortAscend(state.data, payload);
     },
+
     addCountryTableAction: (state, { payload }) => {
       const newTable = {
         ...payload,
+        tableId: shortid.generate(),
         callingCodes: convertCallingCodes(payload.callingCodes),
       };
 
@@ -77,6 +80,7 @@ const countryTableSlice = createSlice({
 
       state.data = [newTable, ...state.data];
     },
+
     deleteCountryTableAction: (state, { payload }) => {
       if (state.filteredList.length)
         state.data.filter((table) => table.tableId !== payload);
