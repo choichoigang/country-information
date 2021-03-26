@@ -15,7 +15,7 @@ const CountryTableList = ({ countryList }) => {
         ({ name, alpha2Code, callingCodes, capital, region }, idx) => {
           return (
             <CountryTable
-              key={`${name}${idx}`}
+              // key={`${name}${idx}`}
               name={name}
               region={region}
               callingCodes={callingCodes.join(",")}
