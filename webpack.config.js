@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-console.log(HtmlWebpackPlugin);
+
 const port = 3000;
 
 module.exports = {

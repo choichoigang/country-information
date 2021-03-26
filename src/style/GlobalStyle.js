@@ -48,4 +48,11 @@ export const GlobalStyle = createGlobalStyle`
   .interval {
     margin-bottom : 1.2rem;
   }
+
+  .comment {
+    padding: 4px 0px;
+    font-size: 1.2rem;
+    word-break: break-word;
+    color: ${({ theme: { color } }) => color.grey_03};
+  }
 `;

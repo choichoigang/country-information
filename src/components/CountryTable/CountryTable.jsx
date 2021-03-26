@@ -3,9 +3,10 @@ import styled from "styled-components";
 import Button from "../moduleComponent/Button";
 
 const CountryTable = ({
+  tableId,
   name,
   alpha2Code,
-  callingCode,
+  callingCodes,
   capital,
   region,
   handleRemoveTalble,
@@ -13,8 +14,8 @@ const CountryTable = ({
   return (
     <CountryTableWrapper>
       <td>{name}</td>
-      <td>{alpha2Code}</td>
-      <td>{Number(callingCode) ? Number(callingCode) : "-"}</td>
+      <td>{alpha2Code || "-"}</td>
+      <td>{callingCodes || "-"}</td>
       <td>{capital || "-"}</td>
       <td>{region || "-"}</td>
 
@@ -22,7 +23,7 @@ const CountryTable = ({
         <Button
           width={"100%"}
           onClick={() => {
-            handleRemoveTalble(name);
+            handleRemoveTalble(tableId);
           }}
         >
           Delete
@@ -40,12 +41,10 @@ const CountryTableWrapper = styled.tr`
   border-bottom: 1px solid #e1e4e8;
 
   td {
-    display: flex;
-    align-items: flex-start;
-
     width: 16%;
     padding: 10px;
-    font-size: 1.4rem;
+    vertical-align: center;
+    font-size: ${({ theme: { typo } }) => typo.P_01};
   }
 `;
 

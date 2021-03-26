@@ -5,3 +5,11 @@ export const INIT_TABLE_FORM = {
   capital: "",
   region: "",
 };
+
+export const INIT_ORDER = {
+  name: false,
+  alpha2Code: false,
+  callingCodes: false,
+  capital: false,
+  region: false,
+};
