@@ -12,9 +12,10 @@ const CountryTableList = ({ countryList }) => {
   return (
     <CountryTableListWrapper>
       {countryList.map(
-        ({ name, alpha2Code, callingCodes, capital, region }, idx) => {
+        ({ name, alpha2Code, callingCodes, capital, region, tableId }) => {
           return (
             <CountryTable
+              key={tableId}
               name={name}
               region={region}
               callingCodes={callingCodes.join(",")}
