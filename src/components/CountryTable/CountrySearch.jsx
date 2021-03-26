@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import useDebounce from "../../hook/useDebounce";
 import { searchCountryTableAction } from "../../store/module/countryTable";
+import { baseInput } from "../../style/css";
 
 const CountrySearch = () => {
   const dispatch = useDispatch();
@@ -23,11 +24,9 @@ const CountrySearch = () => {
 
 const SearchInput = styled.input`
   width: 300px;
-  height: 48px;
-  margin: 12px 0px;
+  padding: 6px 8px;
 
-  background-color: #000000;
-  color: white;
+  ${baseInput}
 `;
 
 export default CountrySearch;

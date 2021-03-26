@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { baseInput } from "../../style/css";
 
 const RenderField = ({ input, label, type, meta: { touched, error } }) => {
   return (
@@ -17,19 +18,16 @@ const RenderField = ({ input, label, type, meta: { touched, error } }) => {
 
 const RenderFieldWrapper = styled.div`
   input {
-    display: inline-block;
     width: 100%;
-    margin: 12px 0px;
-    height: 36px;
-    border: 1px solid #181818;
-    border-radius: 4px;
+
+    ${baseInput}
   }
 
   .label_wrapper {
     margin-top: 20px;
 
     label {
-      font-size: 1.4rem;
+      font-size: ${({ theme: { typo } }) => typo.P_01};
       font-weight: bold;
       margin-top: 12px;
     }

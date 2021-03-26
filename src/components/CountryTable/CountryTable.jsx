@@ -41,12 +41,10 @@ const CountryTableWrapper = styled.tr`
   border-bottom: 1px solid #e1e4e8;
 
   td {
-    display: flex;
-    align-items: flex-start;
-
     width: 16%;
     padding: 10px;
-    font-size: 1.4rem;
+    vertical-align: center;
+    font-size: ${({ theme: { typo } }) => typo.P_01};
   }
 `;
 
