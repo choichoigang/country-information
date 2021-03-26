@@ -3,19 +3,14 @@ import styled, { css } from "styled-components";
 
 const Button = ({
   onClick = () => {},
-  width,
+
   children = "Button",
-  themes = "primary",
-  size = "small",
   fillColor = "#000000",
   hoverColor = "#38d9a9",
   disabled = false,
 }) => {
   return (
     <ButtonWrapper
-      themes={themes}
-      size={size}
-      width={width}
       fillColor={fillColor}
       hoverColor={hoverColor}
       disabled={disabled}
@@ -31,14 +26,18 @@ const ButtonWrapper = styled.button`
   overflow: visible;
   outline: none;
 
-  border-radius: 16px;
-  line-height: 1;
-  font-weight: 600;
-  margin: 0px 4px;
+  padding: 8px 12px;
 
+  border-radius: 8px;
+  line-height: 1;
+  margin: 0px 4px;
   transition: 0.3s;
+  letter-spacing: 0.5px;
+  font-weight: 500;
 
   width: ${(props) => props.width && props.width};
+  color: ${({ theme: { color } }) => color.white};
+  background-color: ${(props) => props.fillColor};
 
   &:hover {
     background: ${(props) => props.hoverColor};
@@ -48,55 +47,7 @@ const ButtonWrapper = styled.button`
     opacity: 0.7;
   }
 
-  ${(props) =>
-    props.themes === "primary" &&
-    css`
-      background-color: ${props.fillColor};
-      color: #ffffff;
-    `}
-
-  ${(props) =>
-    props.themes === "secondary" &&
-    css`
-      color: ${props.fillColor};
-      border-color: ${props.fillColor};
-      background-color: #ffffff;
-      border: 1px solid;
-    `}
-
-  ${(props) =>
-    props.themes === "tertiary" &&
-    css`
-      background-color: #ffffff;
-      color: ${props.fillColor};
-    `}
-
-    /* Button Size */
-
-    ${(props) =>
-    props.size === "small" &&
-    css`
-      height: 3rem;
-      font-size: 1.4rem;
-      padding: 0 0.875rem;
-    `}
-
-    ${(props) =>
-    props.size === "medium" &&
-    css`
-      height: 2.5rem;
-      font-size: 1rem;
-      padding: 0 1rem;
-    `}
-    ${(props) =>
-    props.size === "big" &&
-    css`
-      height: 3rem;
-      font-size: 1.125rem;
-      padding: 0 1.5rem;
-    `}
-
-      &:disabled {
+  &:disabled {
     cursor: not-allowed;
     opacity: 0.2;
   }
