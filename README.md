@@ -13,9 +13,9 @@ redux-form
 
 ### 스타일
 
-```jsx
-styled - component;
-styled - reset;
+```r
+styled-component
+styled-reset
 ```
 
 ### 프로젝트 실행
