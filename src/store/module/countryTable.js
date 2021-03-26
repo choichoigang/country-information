@@ -1,21 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sortAscend, sortDescend } from "../../util/sort";
-import { convertCallingCodes, findMatchKeyword } from "../../util/countryTable";
 import shortid from "shortid";
 
-const INIT_ORDER = {
-  name: false,
-  alpha2Code: false,
-  callingCodes: false,
-  capital: false,
-  region: false,
-};
+import { INIT_ORDER } from "../../constants/countryTable";
+import { sortAscend, sortDescend } from "../../util/sort";
+import { convertCallingCodes, findMatchKeyword } from "../../util/countryTable";
 
 const initialState = {
   searchKeyword: "",
   order: {
-    // true : 오름차순
-    // false : 내림차순
     name: false,
     alpha2Code: false,
     callingCodes: false,
@@ -34,7 +26,6 @@ const countryTableSlice = createSlice({
   name: "countryTable",
   initialState,
   reducers: {
-    // fetch actions
     getCountryTableLoadAction: (state) => {
       state.isLoading = true;
       state.error = null;
@@ -48,11 +39,14 @@ const countryTableSlice = createSlice({
       state.isLoading = false;
     },
 
-    // store actions
     searchCountryTableAction: (state, { payload }) => {
-      state.filteredList = state.data.filter((table) =>
-        findMatchKeyword(table, payload.toLowerCase())
-      );
+      state.filteredList = state.data.filter((table) => {
+        delete table.tableId;
+
+        return findMatchKeyword(table, payload.toLowerCase());
+      });
+
+      state.searchKeyword = payload;
     },
 
     reOrderCountryTableAction: (state, { payload }) => {
