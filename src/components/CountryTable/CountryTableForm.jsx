@@ -41,7 +41,6 @@ const CountryTableForm = ({ handleSubmit }) => {
             name="name"
             type="text"
             label="Name"
-            className="form_input"
             component={RenderField}
             validate={required}
           />
@@ -50,7 +49,6 @@ const CountryTableForm = ({ handleSubmit }) => {
             name="alpha2Code"
             type="text"
             label="Alpha2Code"
-            className="form_input"
             component={RenderField}
           />
 
@@ -58,7 +56,6 @@ const CountryTableForm = ({ handleSubmit }) => {
             name="callingCodes"
             type="text"
             label="CallingCodes"
-            className="form_input"
             component={RenderField}
             validate={onlyNumber}
           />
@@ -70,7 +67,6 @@ const CountryTableForm = ({ handleSubmit }) => {
             name="capital"
             type="text"
             label="Capital"
-            className="form_input"
             component={RenderField}
           />
 
@@ -78,7 +74,6 @@ const CountryTableForm = ({ handleSubmit }) => {
             name="region"
             type="text"
             label="Region"
-            className="form_input"
             component={RenderField}
           />
 
