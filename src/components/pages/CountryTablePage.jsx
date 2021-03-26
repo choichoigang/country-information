@@ -10,10 +10,12 @@ import CountrySearch from "../CountryTable/CountrySearch";
 import Frame from "../frame/Frame";
 
 const CountryTablePage = () => {
-  const { isLoading, data, error, filteredList } = useSelector(
+  const dispatch = useDispatch();
+  const { isLoading, data, error, filteredList, searchKeyword } = useSelector(
     (state) => state.countryTable
   );
-  const dispatch = useDispatch();
+
+  const filterDisabled = filteredList.length === 0 && searchKeyword === "";
 
   useEffect(() => {
     dispatch(getCountryTableLoadAction());
@@ -30,7 +32,7 @@ const CountryTablePage = () => {
             <CountrySearch />
             <CountryTableHeader />
             <CountryTableList
-              countryList={filteredList.length ? filteredList : data}
+              countryList={filterDisabled ? data : filteredList}
             />
           </TableWrapper>
         </>
