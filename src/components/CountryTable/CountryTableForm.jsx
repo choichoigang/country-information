@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { useDispatch } from "react-redux";
 import { Field, reduxForm, reset } from "redux-form";
 import { addCountryTableAction } from "../../store/module/countryTable";
 
-import styled from "styled-components";
+import styled, { ThemeContext } from "styled-components";
 import Button from "../moduleComponent/Button";
 import RenderField from "../moduleComponent/RenderField";
+import FormFrame from "../frame/FormFrame";
 
 import { INIT_TABLE_FORM } from "../../constants/countryTable";
 import { required, onlyNumber } from "../../validation/countryTable";
 
 const CountryTableForm = ({ handleSubmit }) => {
   const dispatch = useDispatch();
+  const { color } = useContext(ThemeContext);
 
   const [isToggle, setIsToggle] = useState(false);
 
@@ -27,12 +29,10 @@ const CountryTableForm = ({ handleSubmit }) => {
 
   return (
     <CountryTableFormWrapper>
-      <Button width="3.6rem" onClick={setModalToggle}>
-        +
-      </Button>
+      <Button onClick={setModalToggle}>Add</Button>
 
       {isToggle && (
-        <From
+        <FormFrame
           onSubmit={handleSubmit((formData) => {
             onSubmitTableForm(formData);
           })}
@@ -60,7 +60,7 @@ const CountryTableForm = ({ handleSubmit }) => {
             validate={onlyNumber}
           />
           <p className="comment">
-            When entering multiple callingCodes, use ","
+            {`When entering multiple callingCodes, use ","\n ex) 1234,5678`}
           </p>
 
           <Field
@@ -78,14 +78,12 @@ const CountryTableForm = ({ handleSubmit }) => {
           />
 
           <div className="button_area">
-            <Button width="100%" fillColor="#00CA42">
-              Add
-            </Button>
-            <Button width="100%" fillColor="#FF605C" onClick={setModalToggle}>
+            <Button fillColor={color.red}>Add</Button>
+            <Button fillColor={color.green} onClick={setModalToggle}>
               Close
             </Button>
           </div>
-        </From>
+        </FormFrame>
       )}
     </CountryTableFormWrapper>
   );
@@ -94,29 +92,9 @@ const CountryTableForm = ({ handleSubmit }) => {
 const CountryTableFormWrapper = styled.div`
   position: relative;
   margin: 30px 0px;
-`;
-
-const From = styled.form`
-  position: absolute;
-  top: 36px;
-  display: flex;
-  flex-direction: column;
-  width: 360px;
-
-  padding: 12px;
-  background-color: #ffffff;
-  border: 1px solid #e1e4e8;
-  border-radius: 8px;
 
   .button_area {
     display: flex;
-  }
-
-  .comment {
-    padding: 4px 0px;
-    font-size: 1.2rem;
-    word-break: break-word;
-    color: #5f5e57;
   }
 `;
 
