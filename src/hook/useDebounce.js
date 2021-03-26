@@ -9,9 +9,11 @@ const useDebounce = (callback, delay) => {
       if (isFirstRender.current) return (isFirstRender.current = false);
 
       callback(state);
-
-      return clearTimeout(timer);
     }, delay);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [state]);
 
   return [state, setState];
