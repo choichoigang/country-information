@@ -41,9 +41,10 @@ const countryTableSlice = createSlice({
 
     searchCountryTableAction: (state, { payload }) => {
       state.filteredList = state.data.filter((table) => {
-        delete table.tableId;
-
-        return findMatchKeyword(table, payload.toLowerCase());
+        return findMatchKeyword(
+          { ...table, tableId: "" },
+          payload.toLowerCase()
+        );
       });
 
       state.searchKeyword = payload;
@@ -77,7 +78,9 @@ const countryTableSlice = createSlice({
 
     deleteCountryTableAction: (state, { payload }) => {
       if (state.filteredList.length)
-        state.data.filter((table) => table.tableId !== payload);
+        state.filteredList = state.filteredList.filter(
+          (table) => table.tableId !== payload
+        );
 
       state.data = state.data.filter((table) => table.tableId !== payload);
     },
