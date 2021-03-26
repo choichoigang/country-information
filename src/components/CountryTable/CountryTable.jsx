@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "../moduleComponent/Button";
 
 const CountryTable = ({
+  tableId,
   name,
   alpha2Code,
   callingCodes,
@@ -22,7 +23,7 @@ const CountryTable = ({
         <Button
           width={"100%"}
           onClick={() => {
-            handleRemoveTalble(name);
+            handleRemoveTalble(tableId);
           }}
         >
           Delete

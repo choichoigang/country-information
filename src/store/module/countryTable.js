@@ -79,9 +79,9 @@ const countryTableSlice = createSlice({
     },
     deleteCountryTableAction: (state, { payload }) => {
       if (state.filteredList.length)
-        state.data.filter((table) => table.name !== payload);
+        state.data.filter((table) => table.tableId !== payload);
 
-      state.data = state.data.filter((table) => table.name !== payload);
+      state.data = state.data.filter((table) => table.tableId !== payload);
     },
   },
 });

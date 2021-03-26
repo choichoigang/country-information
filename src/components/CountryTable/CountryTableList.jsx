@@ -7,7 +7,8 @@ import CountryTable from "./CountryTable";
 const CountryTableList = ({ countryList }) => {
   const dispatch = useDispatch();
 
-  const removeCountryTable = (name) => dispatch(deleteCountryTableAction(name));
+  const removeCountryTable = (tableId) =>
+    dispatch(deleteCountryTableAction(tableId));
 
   return (
     <CountryTableListWrapper>
@@ -16,6 +17,7 @@ const CountryTableList = ({ countryList }) => {
           return (
             <CountryTable
               key={tableId}
+              tableId={tableId}
               name={name}
               region={region}
               callingCodes={callingCodes.join(",")}
