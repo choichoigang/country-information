@@ -10,7 +10,9 @@ import CountrySearch from "../CountryTable/CountrySearch";
 import Frame from "../frame/Frame";
 
 const CountryTablePage = () => {
-  const { isLoading, data, error } = useSelector((state) => state.countryTable);
+  const { isLoading, data, error, filteredList } = useSelector(
+    (state) => state.countryTable
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +29,9 @@ const CountryTablePage = () => {
           <TableWrapper>
             <CountrySearch />
             <CountryTableHeader />
-            <CountryTableList countryList={data} />
+            <CountryTableList
+              countryList={filteredList.length ? filteredList : data}
+            />
           </TableWrapper>
         </>
       )}
