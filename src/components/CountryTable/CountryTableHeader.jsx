@@ -14,36 +14,47 @@ const CountryTableHeader = () => {
 
   return (
     <CountryTableHeaderWrapper>
-      <SortButton
-        name="name"
-        handleClick={sortCountryCategory}
-        isActive={name}
-      />
-      <SortButton
-        name="alpha2Code"
-        handleClick={sortCountryCategory}
-        isActive={alpha2Code}
-      />
-      <SortButton
-        name="callingCodes"
-        handleClick={sortCountryCategory}
-        isActive={callingCodes}
-      />
-      <SortButton
-        name="capital"
-        handleClick={sortCountryCategory}
-        isActive={capital}
-      />
-      <SortButton
-        name="region"
-        handleClick={sortCountryCategory}
-        isActive={region}
-      />
+      <td>
+        <SortButton
+          name="name"
+          handleClick={sortCountryCategory}
+          isActive={name}
+        />
+      </td>
+      <td>
+        <SortButton
+          name="alpha2Code"
+          handleClick={sortCountryCategory}
+          isActive={alpha2Code}
+        />
+      </td>
+      <td>
+        <SortButton
+          name="callingCodes"
+          handleClick={sortCountryCategory}
+          isActive={callingCodes}
+        />
+      </td>
+      <td>
+        <SortButton
+          name="capital"
+          handleClick={sortCountryCategory}
+          isActive={capital}
+        />
+      </td>
+      <td>
+        <SortButton
+          name="region"
+          handleClick={sortCountryCategory}
+          isActive={region}
+        />
+      </td>
     </CountryTableHeaderWrapper>
   );
 };
 
-const CountryTableHeaderWrapper = styled.div`
+const CountryTableHeaderWrapper = styled.tr`
+  display: flex;
   width: 100%;
   height: 50px;
 `;

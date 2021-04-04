@@ -29,8 +29,11 @@ const CountryTablePage = () => {
         <>
           <CountryTableForm />
           <TableWrapper>
-            <CountrySearch />
-            <CountryTableHeader />
+            <thead>
+              <CountrySearch />
+              <CountryTableHeader />
+            </thead>
+
             <CountryTableList
               countryList={filterDisabled ? data : filteredList}
             />

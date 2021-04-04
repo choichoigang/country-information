@@ -16,9 +16,11 @@ const CountrySearch = () => {
   const onChangeKeyword = (e) => setKeyword(e.target.value);
 
   return (
-    <div>
-      <SearchInput type="text" value={keyword} onChange={onChangeKeyword} />
-    </div>
+    <tr>
+      <td>
+        <SearchInput type="text" value={keyword} onChange={onChangeKeyword} />
+      </td>
+    </tr>
   );
 };
 
